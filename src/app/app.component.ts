@@ -1,8 +1,6 @@
-import { generateNew } from './util/GenerateNew';
 import { Component, Renderer2, OnInit, OnDestroy } from '@angular/core';
-import { SBlock } from './model';
 import { collision } from './util/Collision';
-import { TetrisElement } from './model/block';
+import { Block, TetrisElement } from './model/Block';
 import { keybindings } from './util/Keypresses';
 
 @Component({
@@ -12,7 +10,8 @@ import { keybindings } from './util/Keypresses';
 })
 export class AppComponent implements OnInit, OnDestroy {
   unsubscribe?: Function;
-  currentBlock = new SBlock('S');
+  currentBlock = new Block('S');
+  tetronimoTypes = ['_L', 'L', 'N', 'P', 'S', 'T', 'Z'];
 
   allBlocks: TetrisElement[][] = new Array(22).fill('').map((_, i) => {
     return i === 0 || i === 21
@@ -52,7 +51,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   generateTetronimo() {
     this.clearFilledRows();
-    this.currentBlock = generateNew();
+    this.currentBlock = new Block(
+      this.tetronimoTypes[Math.floor(Math.random() * 7)]
+    );
     this.draw();
   }
 

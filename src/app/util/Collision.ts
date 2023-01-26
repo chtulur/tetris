@@ -1,9 +1,9 @@
-import { TBlock } from '../model/T-block';
-import { TetrisElement } from '../model/block';
-import { Coordinates } from '../model/block';
+import { Block } from './../model/Block';
+import { TetrisElement } from '../model/Block';
+import { Coordinates } from '../model/Block';
 
 export const collision = (
-  currentBlock: TBlock,
+  currentBlock: Block,
   allBlocks: TetrisElement[][],
   direction: string
 ): boolean => {
@@ -44,7 +44,7 @@ export const collision = (
 
 const isPathClear = (
   allBlocks: TetrisElement[][],
-  currentBlock: TBlock,
+  currentBlock: Block,
   currentTiles: Coordinates[],
   direction: string
 ) => {
